@@ -1,6 +1,7 @@
 import heroToy from '../assets/toy.png'; // Replace with your image
-import { FaAws, FaGithub, FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaAws, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import SocialLinks from './common/SocialLinks';
 
 const Hero = () => {
 
@@ -8,8 +9,7 @@ const Hero = () => {
   const socialLinks = {
     github: 'https://github.com/bmchauhan',
     linkedin: 'https://linkedin.com/in/chauhan-bhavesh-36a954119',
-    instagram: 'https://instagram.com/yourusername',
-    facebook: 'https://facebook.com/yourusername'
+    twitter: 'https://twitter.com/yourusername'
   };
 
   const handleScrollToProjects = (e) => {
@@ -75,52 +75,17 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="mt-8 flex justify-center lg:justify-start gap-4">
-              <motion.a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
-                title="GitHub"
-              >
-                <FaGithub size={24} />
-              </motion.a>
-              <motion.a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
-                title="LinkedIn"
-              >
-                <FaLinkedin size={24} />
-              </motion.a>
-              <motion.a
-                href={socialLinks.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
-                title="Instagram"
-              >
-                <FaInstagram size={24} />
-              </motion.a>
-              <motion.a
-                href={socialLinks.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
-                title="Facebook"
-              >
-                <FaFacebook size={24} />
-              </motion.a>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="mt-8 flex justify-center lg:justify-start"
+            >
+              <SocialLinks 
+                socialLinks={socialLinks}
+                iconClassName="p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
+              />
+            </motion.div>
           </div>
         </div>
       </div>
