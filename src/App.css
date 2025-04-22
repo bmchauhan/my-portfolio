@@ -1,0 +1,3 @@
+.invert {
+    filter: invert(100%) brightness(200%);
+  }
