@@ -1,12 +1,30 @@
 // src/components/Header.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
+const Header = ({ theme, onThemeSwitch }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { name: "Home", href: "#hero" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   const handleClick = (e, targetId) => {
     e.preventDefault();
-    setOpen(false);
+    setIsMenuOpen(false);
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -27,23 +45,23 @@ const Header = () => {
         </nav>
         <button 
           className="md:hidden text-2xl focus:outline-none" 
-          onClick={() => setOpen(!open)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {open ? '✕' : '☰'}
+          {isMenuOpen ? '✕' : '☰'}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div 
         className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 z-50 md:hidden ${
-          open ? 'opacity-100 visible' : 'opacity-0 invisible'
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
-        onClick={() => setOpen(false)}
+        onClick={() => setIsMenuOpen(false)}
       >
         <div 
           className={`absolute left-0 top-0 w-64 bg-primary h-full transform transition-transform duration-300 ease-in-out ${
-            open ? 'translate-x-0' : '-translate-x-full'
+            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}
         >

@@ -13,8 +13,8 @@ function App() {
       <Header />
       <Hero />
       <Skills />
-      <Experience />
       <Projects />
+      <Experience />
       <Contact />
       <Footer />
       <ScrollToTop />
