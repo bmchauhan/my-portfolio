@@ -5,7 +5,8 @@ import {
   SiLaravel, SiPhp, SiMysql, SiReact, SiJavascript,
   SiDocker, SiGit, SiJira, SiTrello, SiJquery,
   SiRazorpay, SiStripe, SiWhatsapp, SiGoogle, 
-  SiPaytm, SiHdfcbank, SiBrevo, SiPostman
+  SiPaytm, SiHdfcbank, SiBrevo, SiPostman,
+  SiBootstrap
 } from "react-icons/si";
 import { GiBank } from "react-icons/gi";
 import { BsCCircleFill } from "react-icons/bs";
@@ -21,6 +22,9 @@ const Skills = () => {
         { name: "jQuery", icon: <SiJquery className="text-blue-400" /> },
         { name: "AngularJS", icon: <FaAngular className="text-red-500" /> },
         { name: "WordPress", icon: <FaWordpress className="text-blue-600" /> },
+        { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-500" /> },
+        { name: "Bootstrap", icon: <SiBootstrap className="text-purple-500" /> },
+        { name: "LiveWire", icon: <SiLaravel className="text-red-400" /> },
       ],
     },
     {
@@ -29,6 +33,7 @@ const Skills = () => {
         { name: "Laravel", icon: <SiLaravel className="text-red-500" /> },
         { name: "PHP", icon: <SiPhp className="text-purple-500" /> },
         { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
+        { name: "Filament", icon: <SiLaravel className="text-blue-400" /> },
       ],
     },
     {
@@ -47,7 +52,7 @@ const Skills = () => {
       category: "Third Party Integration",
       items: [
         { name: "PNB", icon: <GiBank className="text-blue-500" /> },
-        { name: "HDFC Bank", icon: <SiHdfcbank className="text-red-500" /> },
+        { name: "HDFC", icon: <SiHdfcbank className="text-red-500" /> },
         { name: "RazorPay", icon: <SiRazorpay className="text-blue-400" /> },
         { name: "Stripe", icon: <SiStripe className="text-purple-500" /> },
         { name: "WhatsApp", icon: <SiWhatsapp className="text-green-500" /> },
