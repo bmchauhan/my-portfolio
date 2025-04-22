@@ -128,6 +128,7 @@ const Projects = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
             Featured <span className="text-secondary">Projects</span>
           </h2>
+          <div className="w-24 h-1 bg-secondary mx-auto mb-4"></div>
           <p className="text-gray-300 text-center mb-4 max-w-2xl mx-auto">
             Here are some of my real-world projects that showcase my backend and API expertise using Laravel and PHP.
           </p>

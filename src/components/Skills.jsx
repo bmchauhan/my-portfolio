@@ -73,6 +73,7 @@ const Skills = () => {
             <span className="text-white">Skills & </span>
             <span className="text-secondary">Technologies</span>
           </h2>
+          <div className="w-24 h-1 bg-secondary mx-auto mb-4"></div>
           <p className="text-gray-300">Tools and technologies I work with</p>
         </motion.div>
 

@@ -135,6 +135,7 @@ const Contact = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Get In <span className="text-secondary">Touch</span>
           </h2>
+          <div className="w-24 h-1 bg-secondary mx-auto mb-4"></div>
           <p className="text-gray-300 max-w-2xl mx-auto">
             Feel free to reach out to me for any opportunities or collaborations. I'm always open to discussing new projects and ideas.
           </p>
@@ -284,7 +285,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               className="bg-primary/50 backdrop-blur-sm p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
             >
@@ -301,7 +302,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
               className="bg-primary/50 backdrop-blur-sm p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
             >
@@ -323,7 +324,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
               className="bg-primary/50 backdrop-blur-sm p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all md:col-span-2"
             >

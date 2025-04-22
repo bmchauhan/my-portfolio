@@ -1,13 +1,27 @@
 // src/components/Header.jsx
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Header = ({ theme, onThemeSwitch }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+      
+      // Update active section based on scroll position
+      const sections = ["hero", "skills", "projects", "experience", "contact"];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      setActiveSection(currentSection || "");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,15 +48,37 @@ const Header = ({ theme, onThemeSwitch }) => {
   return (
     <header className="bg-primary text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold tracking-wide text-secondary">Bhavesh.dev</h1>
+        <h1 className="text-2xl font-bold tracking-wide">Bhavesh.dev</h1>
+        
+        {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex gap-8 text-md font-secondary">
-            <li><a href="#about" onClick={(e) => handleClick(e, 'about')} className="hover:text-secondary transition-colors duration-300">About</a></li>
-            <li><a href="#skills" onClick={(e) => handleClick(e, 'skills')} className="hover:text-secondary transition-colors duration-300">Skills</a></li>
-            <li><a href="#projects" onClick={(e) => handleClick(e, 'projects')} className="hover:text-secondary transition-colors duration-300">Projects</a></li>
-            <li><a href="#contact" onClick={(e) => handleClick(e, 'contact')} className="hover:text-secondary transition-colors duration-300">Contact</a></li>
+          <ul className="flex gap-8 text-md">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <motion.a
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href.slice(1))}
+                  className={`relative pb-1 ${
+                    activeSection === item.href.slice(1) 
+                      ? 'text-secondary' 
+                      : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  {item.name}
+                  {activeSection === item.href.slice(1) && (
+                    <motion.span
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-secondary"
+                      layoutId="underline"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </motion.a>
+              </li>
+            ))}
           </ul>
         </nav>
+
+        {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-2xl focus:outline-none" 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -54,7 +90,7 @@ const Header = ({ theme, onThemeSwitch }) => {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 z-50 md:hidden ${
+        className={`fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 z-50 md:hidden ${
           isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -66,12 +102,21 @@ const Header = ({ theme, onThemeSwitch }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6">
-            <h2 className="text-xl font-bold text-secondary mb-8">Menu</h2>
+            <h2 className="text-xl font-bold mb-8">Menu</h2>
             <ul className="space-y-6">
-              <li><a href="#about" onClick={(e) => handleClick(e, 'about')} className="text-white hover:text-secondary transition-colors duration-300 block">About</a></li>
-              <li><a href="#skills" onClick={(e) => handleClick(e, 'skills')} className="text-white hover:text-secondary transition-colors duration-300 block">Skills</a></li>
-              <li><a href="#projects" onClick={(e) => handleClick(e, 'projects')} className="text-white hover:text-secondary transition-colors duration-300 block">Projects</a></li>
-              <li><a href="#contact" onClick={(e) => handleClick(e, 'contact')} className="text-white hover:text-secondary transition-colors duration-300 block">Contact</a></li>
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href.slice(1))}
+                    className={`block text-white/80 hover:text-white transition-colors duration-300 ${
+                      activeSection === item.href.slice(1) ? 'text-secondary' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -29,7 +29,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="bg-primary text-white min-h-[90vh] flex items-center justify-center px-4 md:px-8 lg:px-20 py-12 relative overflow-hidden">
+    <section id="hero" className="bg-primary text-white min-h-[90vh] flex items-center justify-center px-4 md:px-8 lg:px-20 py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left: Image */}
@@ -48,7 +48,7 @@ const Hero = () => {
           {/* Right: Content */}
           <div className="lg:w-1/2 text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-primary leading-tight">
-              Hey 👋 I'm Bhavesh,
+              Hey 👋🏻 I'm Bhavesh,
               <br />
               <span className="text-secondary">Software Engineer</span>
               <br />
