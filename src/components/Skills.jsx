@@ -6,7 +6,7 @@ import {
   SiDocker, SiGit, SiJira, SiTrello, SiJquery,
   SiRazorpay, SiStripe, SiWhatsapp, SiGoogle, 
   SiPaytm, SiHdfcbank, SiBrevo, SiPostman,
-  SiBootstrap
+  SiBootstrap, SiTwilio
 } from "react-icons/si";
 import { GiBank } from "react-icons/gi";
 import { BsCCircleFill } from "react-icons/bs";
@@ -51,15 +51,16 @@ const Skills = () => {
     {
       category: "Third Party Integration",
       items: [
-        { name: "PNB", icon: <GiBank className="text-blue-500" /> },
         { name: "HDFC", icon: <SiHdfcbank className="text-red-500" /> },
         { name: "RazorPay", icon: <SiRazorpay className="text-blue-400" /> },
         { name: "Stripe", icon: <SiStripe className="text-purple-500" /> },
+        { name: "Paytm", icon: <SiPaytm className="text-blue-500" /> },
+        { name: "Chargebee", icon: <BsCCircleFill className="text-purple-500" /> },
         { name: "WhatsApp", icon: <SiWhatsapp className="text-green-500" /> },
         { name: "SendInBlue", icon: <img src={sendinBlueLogo} alt="SendInBlue" className="w-6 h-6" /> },
         { name: "RWG", icon: <SiGoogle className="text-red-500" /> },
-        { name: "Paytm", icon: <SiPaytm className="text-blue-500" /> },
-        { name: "Chargebee", icon: <BsCCircleFill className="text-purple-500" /> },
+        { name: "Twilio", icon: <SiTwilio className="text-red-500" /> },
+       
       ],
     },
   ];
