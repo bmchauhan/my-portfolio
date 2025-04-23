@@ -1,9 +1,14 @@
 // src/components/Contact.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import SocialLinks from '../components/common/SocialLinks';
+import SocialLinks from './common/SocialLinks';
+import Section from './common/Section';
+import SectionTitle from './common/SectionTitle';
+import Button from './common/Button';
+import Card from './common/Card';
+import { FONT_SIZES, TEXT_COLORS, FONT_WEIGHTS } from '../constants/typography';
 
 const Contact = () => {
   const form = useRef();
@@ -126,41 +131,31 @@ const Contact = () => {
   const socialLinks = {
     github: 'https://github.com/bmchauhan',
     linkedin: 'https://linkedin.com/in/chauhan-bhavesh-36a954119',
-    instagram: 'https://instagram.com/yourusername',
     twitter: 'https://twitter.com/yourusername'
   };
 
-  return (
-    <section id="contact" className="bg-gradient-to-br from-primary to-gray-900 py-8 md:py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-8 md:mb-12"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 md:mb-3">
-            Get In <span className="text-secondary">Touch</span>
-          </h2>
-          <div className="w-16 md:w-24 h-1 bg-secondary mx-auto mb-2 md:mb-3"></div>
-          <p className="text-xs sm:text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
-            Feel free to reach out to me for any opportunities or collaborations. I'm always open to discussing new projects and ideas.
-          </p>
-        </motion.div>
+  const labelClasses = `block ${FONT_SIZES.small.sm} ${FONT_SIZES.small.md} ${FONT_SIZES.small.lg} ${FONT_WEIGHTS.medium} ${TEXT_COLORS.secondary} mb-1 md:mb-2 text-left`;
+  const inputClasses = `w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-primary/30 text-white border border-secondary/20 focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all ${FONT_SIZES.small.sm} ${FONT_SIZES.small.md} ${FONT_SIZES.small.lg}`;
+  const errorClasses = `mt-1 ${FONT_SIZES.small.sm} text-red-500 text-left`;
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Contact Form - Left Side */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-primary/50 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-secondary/20"
-          >
-            <form ref={form} onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+  return (
+    <Section id="contact" className="bg-gradient-to-br from-primary to-gray-900">
+      <SectionTitle
+        title="Get In Touch"
+        accent="Touch"
+        subtitle="Feel free to reach out to me for any opportunities or collaborations. I'm always open to discussing new projects and ideas."
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-[58%_38%] gap-6 lg:gap-[4%]">
+        {/* Contact Form - Left Side */}
+        <Card 
+          hover={false} 
+          className="lg:p-6 xl:p-8"
+          center={false}
+          content={
+            <form ref={form} onSubmit={handleSubmit} className="w-full space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="name" className={labelClasses}>
                   Your Name
                 </label>
                 <input
@@ -169,17 +164,16 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-primary/30 text-white border ${
-                    errors.name ? 'border-red-500' : 'border-secondary/20'
-                  } focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all text-xs sm:text-sm`}
+                  className={`${inputClasses} ${errors.name ? 'border-red-500' : ''}`}
                   placeholder="John Doe"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+                  <p className={errorClasses}>{errors.name}</p>
                 )}
               </div>
+
               <div>
-                <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="email" className={labelClasses}>
                   Email Address
                 </label>
                 <input
@@ -188,17 +182,16 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-primary/30 text-white border ${
-                    errors.email ? 'border-red-500' : 'border-secondary/20'
-                  } focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all text-xs sm:text-sm`}
+                  className={`${inputClasses} ${errors.email ? 'border-red-500' : ''}`}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                  <p className={errorClasses}>{errors.email}</p>
                 )}
               </div>
+
               <div>
-                <label htmlFor="title" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="title" className={labelClasses}>
                   Title
                 </label>
                 <input
@@ -207,17 +200,16 @@ const Contact = () => {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-primary/30 text-white border ${
-                    errors.title ? 'border-red-500' : 'border-secondary/20'
-                  } focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all text-xs sm:text-sm`}
+                  className={`${inputClasses} ${errors.title ? 'border-red-500' : ''}`}
                   placeholder="Project Inquiry"
                 />
                 {errors.title && (
-                  <p className="mt-1 text-xs text-red-500">{errors.title}</p>
+                  <p className={errorClasses}>{errors.title}</p>
                 )}
               </div>
+
               <div>
-                <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="message" className={labelClasses}>
                   Message
                 </label>
                 <textarea
@@ -226,161 +218,102 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-primary/30 text-white border ${
-                    errors.message ? 'border-red-500' : 'border-secondary/20'
-                  } focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all text-xs sm:text-sm`}
+                  className={`${inputClasses} ${errors.message ? 'border-red-500' : ''}`}
                   placeholder="Your message here..."
                 ></textarea>
                 {errors.message && (
-                  <p className="mt-1 text-xs text-red-500">{errors.message}</p>
+                  <p className={errorClasses}>{errors.message}</p>
                 )}
               </div>
 
               {/* Status Messages */}
               <AnimatePresence>
                 {submitStatus === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="p-3 md:p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400 text-xs sm:text-sm"
-                  >
+                  <div className="p-3 md:p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400 text-xs sm:text-sm">
                     Message sent successfully! I'll get back to you soon.
-                  </motion.div>
+                  </div>
                 )}
                 {submitStatus === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="p-3 md:p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-xs sm:text-sm"
-                  >
+                  <div className="p-3 md:p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-xs sm:text-sm">
                     Oops! Something went wrong. Please try again later.
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
 
-              <motion.button
+              <Button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-2 md:px-6 md:py-3 bg-secondary text-black font-semibold rounded-lg shadow-lg hover:bg-purple-300 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                isLoading={isSubmitting}
+                icon={FaPaperPlane}
+                fullWidth
               >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <FaPaperPlane size={14} />
-                    Send Message
-                  </>
-                )}
-              </motion.button>
+                Send Message
+              </Button>
             </form>
-          </motion.div>
+          } 
+        />
 
-          {/* Contact Info Cards - Right Side */}
-          <div className="flex flex-col gap-4 md:gap-6">
-            {/* First Row - Location and Phone */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              {/* Location */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-primary/50 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
+        {/* Contact Info Cards - Right Side */}
+        <div className="grid grid-rows-[auto_auto_1fr] gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <Card
+              icon={FaMapMarkerAlt}
+              title="Location"
+              content={contactInfo.location}
+              delay={0.2}
+            />
+            <Card
+              icon={FaPhone}
+              title="Phone"
+              content={
+                <div className="flex flex-col items-end gap-1">
+                  <a href={`tel:${contactInfo.phone1}`} className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors`}>
+                    {contactInfo.phone1}
+                  </a>
+                  <a href={`tel:${contactInfo.phone2}`} className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors`}>
+                    {contactInfo.phone2}
+                  </a>
+                </div>
+              }
+              delay={0.3}
+              center={false}
+              className="text-right"
+            />
+          </div>
+
+          <Card
+            icon={FaEnvelope}
+            title="Email"
+            content={
+              <a 
+                href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry`}
+                className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors break-all text-right block`}
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2 md:mb-3">
-                    <FaMapMarkerAlt className="text-secondary" size={18} />
-                  </div>
-                  <h3 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Location</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-300">{contactInfo.location}</p>
-                </div>
-              </motion.div>
+                {contactInfo.email}
+              </a>
+            }
+            delay={0.4}
+            center={false}
+            className="text-right"
+          />
 
-              {/* Phone */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-primary/50 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2 md:mb-3">
-                    <FaPhone className="text-secondary" size={18} />
-                  </div>
-                  <h3 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Phone</h3>
-                  <div className="flex flex-col gap-1">
-                    <a 
-                      href={`tel:${contactInfo.phone1}`}
-                      className="text-xs sm:text-sm md:text-base text-gray-300 hover:text-secondary transition-colors"
-                    >
-                      {contactInfo.phone1}
-                    </a>
-                    <a 
-                      href={`tel:${contactInfo.phone2}`}
-                      className="text-xs sm:text-sm md:text-base text-gray-300 hover:text-secondary transition-colors"
-                    >
-                      {contactInfo.phone2}
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Second Row - Email */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-primary/50 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2 md:mb-3">
-                  <FaEnvelope className="text-secondary" size={18} />
-                </div>
-                <h3 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Email</h3>
-                <a 
-                  href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry`}
-                  className="text-xs sm:text-sm md:text-base text-gray-300 hover:text-secondary transition-colors break-all"
-                >
-                  {contactInfo.email}
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Third Row - Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-primary/50 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-secondary/20 hover:border-secondary/40 transition-all"
-            >
-              <div className="flex flex-col items-center text-center">
-                <h3 className="text-base md:text-lg font-semibold text-white mb-4 md:mb-6">Connect With Me</h3>
+          <Card
+            title="Connect With Me"
+            content={
+              <div className="flex justify-end">
                 <SocialLinks 
                   socialLinks={socialLinks}
-                  iconClassName="text-gray-300 hover:text-secondary transition-colors"
+                  iconClassName={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors`}
                 />
               </div>
-            </motion.div>
-          </div>
+            }
+            delay={0.5}
+            center={false}
+            className="text-right"
+          />
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

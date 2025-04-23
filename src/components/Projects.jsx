@@ -1,7 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import imdbCloneImage from "../assets/imdb-clone-image.png";
+import Section from './common/Section';
+import SectionTitle from './common/SectionTitle';
+import Card from './common/Card';
+import { FONT_SIZES, TEXT_COLORS } from '../constants/typography';
 
 // Default project image with theme colors
 const defaultProjectImage = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjA7Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMWEyYTMwOyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iI2U2ZTZlNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlByb2plY3QgUHJldmlldzwvdGV4dD48L3N2Zz4=';
@@ -94,117 +97,86 @@ const Projects = () => {
     return colors[tag] || 'bg-gray-500/10 text-gray-400';
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <section id="projects" className="bg-gradient-to-br from-primary to-gray-900 py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            Featured <span className="text-secondary">Projects</span>
-          </h2>
-          <div className="w-24 h-1 bg-secondary mx-auto mb-4"></div>
-          <p className="text-gray-300 text-center mb-4 max-w-2xl mx-auto">
-            Here are some of my real-world projects that showcase my backend and API expertise using Laravel and PHP.
-          </p>
-          <p className="text-gray-400 text-center text-sm italic mb-12 max-w-2xl mx-auto">
-            Note: Projects marked as "Professional Work" were developed during my professional tenure with various companies. 
-            Due to confidentiality and intellectual property rights, I cannot provide direct links or access to these projects.
-          </p>
-        </motion.div>
+    <Section id="projects" className="bg-gradient-to-br from-primary to-gray-900">
+      <SectionTitle
+        title="Featured Projects"
+        accent="Projects"
+        subtitle="Here are some of my real-world projects that showcase my backend and API expertise using Laravel and PHP."
+      >
+        <p className={`${FONT_SIZES.small.sm} ${TEXT_COLORS.secondary} italic mt-4`}>
+          Note: Projects marked as "Professional Work" were developed during my professional tenure with various companies. 
+          Due to confidentiality and intellectual property rights, I cannot provide direct links or access to these projects.
+        </p>
+      </SectionTitle>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="bg-primary/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 border border-secondary/20 hover:border-secondary/40"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                <div className="absolute top-4 right-4 z-10">
-                  <span className={`px-3 py-1.5 rounded-full text-xs font-medium border border-white/30 ${
-                    project.isProfessional 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-[#111827] text-white'
-                  }`}>
-                    {project.isProfessional ? 'Professional Work' : 'Portfolio Project'}
-                  </span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className={`px-3 py-1 rounded-full text-sm ${getTagColor(tag)}`}
-                    >
-                      {tag}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            className="overflow-hidden"
+            delay={index * 0.1}
+            content={
+              <>
+                <div className="relative h-48 overflow-hidden -mx-4 -mt-4">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className={`px-3 py-1.5 rounded-full text-xs font-medium border border-white/30 ${
+                      project.isProfessional 
+                        ? 'bg-purple-600 text-white' 
+                        : 'bg-[#111827] text-white'
+                    }`}>
+                      {project.isProfessional ? 'Professional Work' : 'Portfolio Project'}
                     </span>
-                  ))}
+                  </div>
                 </div>
-                <div className="mt-4 flex gap-4">
-                  <a
-                    href={project.github}
-                    className="text-gray-400 hover:text-white transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub size={20} />
-                  </a>
-                  <a
-                    href={project.live}
-                    className="text-gray-400 hover:text-white transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaExternalLinkAlt size={20} />
-                  </a>
+                <div className="mt-4">
+                  <h3 className={`${FONT_SIZES.subtitle.sm} ${FONT_SIZES.subtitle.md} ${TEXT_COLORS.primary} font-bold mb-2`}>
+                    {project.title}
+                  </h3>
+                  <p className={`${FONT_SIZES.body.sm} ${TEXT_COLORS.secondary} mb-4`}>
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className={`px-3 py-1 rounded-full text-sm ${getTagColor(tag)}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
+                    <a
+                      href={project.github}
+                      className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithub size={20} />
+                    </a>
+                    <a
+                      href={project.live}
+                      className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaExternalLinkAlt size={20} />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </>
+            }
+          />
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 
