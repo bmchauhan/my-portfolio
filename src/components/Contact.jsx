@@ -261,12 +261,13 @@ const Contact = () => {
               title="Location"
               content={contactInfo.location}
               delay={0.2}
+              center={true}
             />
             <Card
               icon={FaPhone}
               title="Phone"
               content={
-                <div className="flex flex-col items-end gap-1">
+                <div className="flex flex-col items-center gap-1">
                   <a href={`tel:${contactInfo.phone1}`} className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors`}>
                     {contactInfo.phone1}
                   </a>
@@ -276,8 +277,7 @@ const Contact = () => {
                 </div>
               }
               delay={0.3}
-              center={false}
-              className="text-right"
+              center={true}
             />
           </div>
 
@@ -287,20 +287,19 @@ const Contact = () => {
             content={
               <a 
                 href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry`}
-                className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors break-all text-right block`}
+                className={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors break-all block text-center`}
               >
                 {contactInfo.email}
               </a>
             }
             delay={0.4}
-            center={false}
-            className="text-right"
+            center={true}
           />
 
           <Card
             title="Connect With Me"
             content={
-              <div className="flex justify-end">
+              <div className="flex justify-center">
                 <SocialLinks 
                   socialLinks={socialLinks}
                   iconClassName={`${TEXT_COLORS.secondary} hover:text-secondary transition-colors`}
@@ -308,8 +307,7 @@ const Contact = () => {
               </div>
             }
             delay={0.5}
-            center={false}
-            className="text-right"
+            center={true}
           />
         </div>
       </div>

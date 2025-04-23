@@ -52,12 +52,12 @@ const Hero = () => {
 
         {/* Right: Content */}
         <div className="lg:w-1/2 text-center lg:text-left">
-          <h1 className={`${FONT_SIZES.title.sm} ${FONT_SIZES.title.md} ${FONT_SIZES.title.lg} ${FONT_WEIGHTS.bold} font-primary leading-tight`}>
+          <h1 className="text-[28px] md:text-[38px] lg:text-[48px] font-bold font-primary leading-tight">
             Hey 👋🏻 I'm Bhavesh,
             <br />
             <span className={TEXT_COLORS.accent}>Software Engineer</span>
             <br />
-            <span className={`${FONT_SIZES.subtitle.sm} ${FONT_SIZES.subtitle.md} ${TEXT_COLORS.secondary}`}>
+            <span className="text-[20px] md:text-[24px] lg:text-[28px] text-gray-300">
               with 5+ Years of Experience
             </span>
           </h1>

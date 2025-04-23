@@ -48,7 +48,9 @@ const Header = ({ theme, onThemeSwitch }) => {
   return (
     <header className="bg-primary text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold tracking-wide">Bhavesh.dev</h1>
+        <h1 className="text-2xl font-bold tracking-wide">
+          bhavesh<span className="text-secondary">.dev</span>
+        </h1>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
@@ -84,7 +86,7 @@ const Header = ({ theme, onThemeSwitch }) => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? '✕' : '☰'}
+          ☰
         </button>
       </div>
 
@@ -102,7 +104,16 @@ const Header = ({ theme, onThemeSwitch }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6">
-            <h2 className="text-xl font-bold mb-8">Menu</h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-xl font-bold">Menu</h2>
+              <button 
+                className="text-2xl text-white/80 hover:text-white focus:outline-none" 
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
             <ul className="space-y-6">
               {navItems.map((item) => (
                 <li key={item.name}>

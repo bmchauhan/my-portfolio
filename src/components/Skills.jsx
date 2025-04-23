@@ -1,4 +1,4 @@
-import { FaReact, FaNodeJs, FaDatabase, FaTools, FaAws, FaAngular, FaWordpress, FaCss3Alt } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaDatabase, FaTools, FaAws, FaAngular, FaWordpress, FaCss3Alt, FaCode } from "react-icons/fa";
 import { 
   SiMongodb, SiExpress, SiTailwindcss, SiFramer, 
   SiLaravel, SiPhp, SiMysql, SiReact, SiJavascript,
@@ -90,7 +90,7 @@ const Skills = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-6 md:gap-8">
         {/* Development Skills Card */}
         <Card
-          icon={FaReact}
+          icon={FaCode}
           iconClassName="text-blue-500 text-2xl md:text-3xl"
           title="Development Skills"
           titleClassName="text-base md:text-lg font-medium mb-4"
@@ -103,7 +103,7 @@ const Skills = () => {
                   {skills[0].items.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex flex-col items-center gap-1 md:gap-1.5 p-1.5 md:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                      className="flex flex-col items-center gap-1 md:gap-1.5 p-1 md:p-2 lg:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                     >
                       <div className="text-base md:text-lg lg:text-xl">
                         {skill.icon ? (
@@ -127,7 +127,7 @@ const Skills = () => {
                   {skills[1].items.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex flex-col items-center gap-1 md:gap-1.5 p-1.5 md:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                      className="flex flex-col items-center gap-1 md:gap-1.5 p-1 md:p-2 lg:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                     >
                       <div className="text-base md:text-lg lg:text-xl">
                         <skill.icon className={skill.color} />
@@ -156,7 +156,7 @@ const Skills = () => {
                 {skills[2].items.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className="flex flex-col items-center gap-1 md:gap-1.5 p-1.5 md:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                    className="flex flex-col items-center gap-1 md:gap-1.5 p-1 md:p-2 lg:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                   >
                     <div className="text-base md:text-lg lg:text-xl">
                       <skill.icon className={skill.color} />
@@ -181,7 +181,7 @@ const Skills = () => {
                 {skills[3].items.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className="flex flex-col items-center gap-1 md:gap-1.5 p-1.5 md:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                    className="flex flex-col items-center gap-1 md:gap-1.5 p-1 md:p-2 lg:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                   >
                     <div className="text-base md:text-lg lg:text-xl">
                       {skill.icon ? (
