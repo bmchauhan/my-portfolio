@@ -7,7 +7,8 @@ const SectionTitle = ({
   subtitle,
   accent,
   className = "",
-  center = true
+  center = true,
+  note // NEW: Optional disclaimer or warning text
 }) => {
   const titleClasses = `${FONT_SIZES.title.sm} ${FONT_SIZES.title.md} ${FONT_SIZES.title.lg} ${FONT_WEIGHTS.bold} ${TEXT_COLORS.primary} mb-1 md:mb-2`;
   const subtitleClasses = `${FONT_SIZES.body.sm} ${FONT_SIZES.body.md} ${FONT_SIZES.body.lg} ${TEXT_COLORS.secondary} max-w-2xl ${center ? 'mx-auto' : ''}`;
@@ -29,14 +30,22 @@ const SectionTitle = ({
           </>
         ) : title}
       </h2>
+
       <div className={`w-12 md:w-20 h-0.5 md:h-1 bg-secondary ${center ? 'mx-auto' : ''} mb-2 md:mb-3`}></div>
+
       {subtitle && (
         <p className={subtitleClasses}>
           {subtitle}
+        </p>
+      )}
+
+      {note && (
+        <p className={`italic text-sm text-white/70 mt-4 ${center ? 'mx-auto' : ''} max-w-2xl`}>
+          {note}
         </p>
       )}
     </motion.div>
   );
 };
 
-export default SectionTitle; 
+export default SectionTitle;

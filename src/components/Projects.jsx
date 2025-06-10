@@ -113,12 +113,8 @@ const Projects = () => {
         title="Featured Projects"
         accent="Projects"
         subtitle="Here are some of my real-world projects that showcase my work."
-      >
-        <p className={`${FONT_SIZES.small.sm} ${TEXT_COLORS.secondary} italic mt-4`}>
-          Note: Projects marked as "Professional Work" were developed during my professional tenure with various companies. 
-          Due to confidentiality and intellectual property rights, I cannot provide direct links or access to these projects.
-        </p>
-      </SectionTitle>
+        note='⚠️ Projects marked as "Professional Work" were developed during my employment and are the intellectual property of the companies I worked with.'
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
@@ -163,22 +159,26 @@ const Projects = () => {
                     ))}
                   </div>
                   <div className="flex gap-4">
-                    <a
-                      href={project.github}
-                      className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaGithub size={20} />
-                    </a>
-                    <a
-                      href={project.live}
-                      className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaExternalLinkAlt size={20} />
-                    </a>
+                    {project.github && project.github !== "#" && (
+                      <a
+                        href={project.github}
+                        className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaGithub size={20} />
+                      </a>
+                    )}
+                    {project.live && project.live !== "#" && (
+                      <a
+                        href={project.live}
+                        className={`${TEXT_COLORS.secondary} hover:text-white transition-colors`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaExternalLinkAlt size={20} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </>
