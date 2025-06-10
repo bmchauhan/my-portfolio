@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import imdbCloneImage from "../assets/imdb-clone-image.png";
+import siteSecuritySystemImage from "../assets/site-security-system.png";
 import Section from './common/Section';
 import SectionTitle from './common/SectionTitle';
 import Card from './common/Card';
@@ -11,6 +12,15 @@ const defaultProjectImage = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZ
 
 const Projects = () => {
   const projects = [
+    {
+      title: "Site Security Systems",
+      description: "Built a responsive WordPress website for a security systems company, highlighting their CCTV and surveillance services with a clean layout and integrated contact form.",
+      image: siteSecuritySystemImage,
+      tags: ["Wordpress"],
+      github: "#",
+      live: "https://sitesecuritysystems.com",
+      isProfessional: true
+    },
     {
       title: "PROEMS – Education Management System",
       description: "A Laravel-based platform for managing school operations, student records, and staff activity. Integrated roles & permissions with Spatie and real-time communication tools.",
@@ -102,7 +112,7 @@ const Projects = () => {
       <SectionTitle
         title="Featured Projects"
         accent="Projects"
-        subtitle="Here are some of my real-world projects that showcase my backend and API expertise using Laravel and PHP."
+        subtitle="Here are some of my real-world projects that showcase my work."
       >
         <p className={`${FONT_SIZES.small.sm} ${TEXT_COLORS.secondary} italic mt-4`}>
           Note: Projects marked as "Professional Work" were developed during my professional tenure with various companies. 
